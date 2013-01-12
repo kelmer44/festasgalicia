@@ -6,4 +6,15 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_festas_list">FestasListActivity</string>
 
+    
+    
+    <string name="search_hint">Búsqueda</string>
+    
+    <string-array name="showfilter_list">
+        <item>All</item>
+        <item>Favorites</item>
+        <item>Unseen/Upcoming</item>
+        <item>Hidden</item>
+        <item>Lists</item>
+    </string-array>
 </resources>
