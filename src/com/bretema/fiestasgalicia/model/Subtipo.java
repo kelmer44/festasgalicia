@@ -1,6 +1,6 @@
 package com.bretema.fiestasgalicia.model;
 
-public class SubTipo {
+public class Subtipo {
 
 	private int id;
 	private String descripcion;
@@ -16,9 +16,13 @@ public class SubTipo {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public SubTipo(int id, String descripcion) {
+	public Subtipo(int id, String descripcion) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
+	}
+	
+	public Subtipo(){
+		super();
 	}
 }
