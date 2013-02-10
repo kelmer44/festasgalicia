@@ -4,7 +4,7 @@
     <string name="app_name">FiestasGalicia</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_festas_list">FestasListActivity</string>
+    <string name="title_activity_festas_list">Fiestas de Galicia</string>
     <string name="search_hint">Búsqueda</string>
 
     <string-array name="showfilter_list">
