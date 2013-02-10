@@ -1463,6 +1463,7 @@ containing a value of this type.
         public static final int labels=0x7f040046;
         public static final int listMode=0x7f040002;
         public static final int mainImage=0x7f04003d;
+        public static final int menu_map=0x7f040050;
         public static final int menu_search=0x7f04004f;
         public static final int menu_settings=0x7f04004e;
         public static final int nombreFiesta=0x7f04003a;
