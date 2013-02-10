@@ -36,13 +36,13 @@ import com.bretema.fiestasgalicia.util.CompatActionBarNavHandler;
 import com.bretema.fiestasgalicia.util.CompatActionBarNavListener;
 import com.bretema.fiestasgalicia.util.JSONParser;
 import com.bretema.fiestasgalicia.util.ServiceConstants;
+import com.bretema.fiestasgalicia.view.fragment.FiestasPagerAdapter;
 import com.bretema.fiestasgalicia.view.fragment.TestFragment;
 import com.viewpagerindicator.TabPageIndicator;
 
-public class FestasListActivity extends BaseActivity implements CompatActionBarNavListener {
+public class FiestasVistaListaActivity extends BaseActivity implements CompatActionBarNavListener {
 
-	private final static String		LOG_TAG	= FestasListActivity.class.getSimpleName();
-	private static final String[]	CONTENT	= new String[] { "Favoritos", "Población", "Próximas" };
+	private final static String		LOG_TAG	= FiestasVistaListaActivity.class.getSimpleName();
 	// Pager
 	private ViewPager				mPager;
 	// Indicator
@@ -53,19 +53,27 @@ public class FestasListActivity extends BaseActivity implements CompatActionBarN
 	private JSONParser				jParser	= new JSONParser();
 	public List<Subtipo>			subtipoList;
 	public List<Evento>				listaEventos;
+	private FiestasPagerAdapter		mFiestasAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_festas_list);
 
-		FragmentPagerAdapter adapter = new FestasListAdapter(getSupportFragmentManager());
+		mFiestasAdapter = new FiestasPagerAdapter(getSupportFragmentManager(), this);
+
+		
+		subtipoList = new ArrayList<Subtipo>();
+		listaEventos = new ArrayList<Evento>();
+		
+		//View pager indicator
 		mPager = (ViewPager) findViewById(R.id.festasListPager);
-		mPager.setAdapter(adapter);
+		mPager.setAdapter(mFiestasAdapter);
 
 		mIndicator = (TabPageIndicator) findViewById(R.id.festasListPagerIndicator);
 		mIndicator.setViewPager(mPager);
 
+		//Dialogo de progreso para la carga de datos
 		pDialog = new ProgressDialog(this);
 
 		new LoadCategoryData().execute();
@@ -86,28 +94,6 @@ public class FestasListActivity extends BaseActivity implements CompatActionBarN
 		actionBar.setListNavigationCallbacks(mActionBarList, handler);
 	}
 
-	public class FestasListAdapter extends FragmentPagerAdapter {
-
-		public FestasListAdapter(FragmentManager fm) {
-			super(fm);
-		}
-
-		@Override
-		public int getCount() {
-			return CONTENT.length;
-		}
-
-		@Override
-		public CharSequence getPageTitle(int position) {
-			return CONTENT[position % CONTENT.length].toUpperCase();
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			return TestFragment.newInstance(CONTENT[position % CONTENT.length]);
-		}
-
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -175,7 +161,7 @@ public class FestasListActivity extends BaseActivity implements CompatActionBarN
 				boolean success = json.getBoolean(ServiceConstants.TAG_SUCCESS);
 				String message = json.getString(ServiceConstants.TAG_MESSAGE);
 
-				Log.d("Server message: ", json.toString());
+				Log.d("Server message: ", message);
 
 				// Getting data
 				JSONObject dataObject = json.getJSONObject(ServiceConstants.TAG_DATA);
@@ -226,7 +212,7 @@ public class FestasListActivity extends BaseActivity implements CompatActionBarN
 			pDialog.dismiss();
 			// Toast.makeText(LineListActivity.this, "Tarea cancelada!",
 			// Toast.LENGTH_SHORT).show();
-			FestasListActivity.this.finish();
+			FiestasVistaListaActivity.this.finish();
 		}
 
 		/**
@@ -252,12 +238,12 @@ public class FestasListActivity extends BaseActivity implements CompatActionBarN
 					}
 				});
 			} else {
-				AlertDialog.Builder builder = new AlertDialog.Builder(FestasListActivity.this);
+				AlertDialog.Builder builder = new AlertDialog.Builder(FiestasVistaListaActivity.this);
 				builder.setMessage("No se pudieron obtener los datos");
 				builder.setCancelable(false);
 				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
-						FestasListActivity.this.finish();
+						FiestasVistaListaActivity.this.finish();
 					}
 				});
 				AlertDialog alert = builder.create();
@@ -343,10 +329,10 @@ public class FestasListActivity extends BaseActivity implements CompatActionBarN
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						
+
 						String imagenPrincipal = c.getString(ServiceConstants.TAG_EVENTO_IMAGEN_PRINCIPAL);
 						String imagenLista = c.getString(ServiceConstants.TAG_EVENTO_IMAGEN_LISTA);
-						
+
 						Evento evento = new Evento();
 						evento.setId(id);
 						evento.setNombre(nombre);
@@ -355,17 +341,16 @@ public class FestasListActivity extends BaseActivity implements CompatActionBarN
 						evento.setImagenPrincipal(imagenPrincipal);
 						evento.setImagenLista(imagenLista);
 
-						
 						Municipio m = new Municipio();
-						
+
 						JSONObject municipioJson = c.getJSONObject(ServiceConstants.TAG_EVENTO_MUNICIPIO);
-						
+
 						int idMunicipio = municipioJson.getInt(ServiceConstants.TAG_MUNICIPIO_ID_MUNICIPIO);
 						int idProvincia = municipioJson.getInt(ServiceConstants.TAG_MUNICIPIO_ID_PROVINCIA);
 						double latitud = municipioJson.getDouble(ServiceConstants.TAG_MUNICIPIO_LATITUD);
 						double longitud = municipioJson.getDouble(ServiceConstants.TAG_MUNICIPIO_LONGITUD);
 						String nombreMunicipio = "";
-						
+
 						try {
 							nombreMunicipio = URLDecoder.decode(c.getString(ServiceConstants.TAG_MUNICIPIO_NOMBRE), "UTF-8");
 						} catch (UnsupportedEncodingException e1) {
@@ -376,7 +361,7 @@ public class FestasListActivity extends BaseActivity implements CompatActionBarN
 						m.setNombre(nombreMunicipio);
 						m.setLatitud(latitud);
 						m.setLongitud(longitud);
-						
+
 						evento.setMunicipio(m);
 						evento.setLatitud(latitud);
 						evento.setLongitud(longitud);
@@ -403,7 +388,7 @@ public class FestasListActivity extends BaseActivity implements CompatActionBarN
 			pDialog.dismiss();
 			// Toast.makeText(LineListActivity.this, "Tarea cancelada!",
 			// Toast.LENGTH_SHORT).show();
-			FestasListActivity.this.finish();
+			FiestasVistaListaActivity.this.finish();
 		}
 
 		/**
@@ -429,12 +414,12 @@ public class FestasListActivity extends BaseActivity implements CompatActionBarN
 					}
 				});
 			} else {
-				AlertDialog.Builder builder = new AlertDialog.Builder(FestasListActivity.this);
+				AlertDialog.Builder builder = new AlertDialog.Builder(FiestasVistaListaActivity.this);
 				builder.setMessage("No se pudieron obtener los datos");
 				builder.setCancelable(false);
 				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
-						FestasListActivity.this.finish();
+						FiestasVistaListaActivity.this.finish();
 					}
 				});
 				AlertDialog alert = builder.create();
@@ -445,4 +430,9 @@ public class FestasListActivity extends BaseActivity implements CompatActionBarN
 
 	}
 
+	
+	
+    private void onChangePagerAdapter(int navItem) {
+    	mPager.setAdapter(mFiestasAdapter);
+    }
 }

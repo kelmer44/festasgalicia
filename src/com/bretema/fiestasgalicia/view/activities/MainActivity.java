@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 				finish();
 				// start the home Screen
 
-				Intent intent = new Intent(MainActivity.this, FestasListActivity.class);
+				Intent intent = new Intent(MainActivity.this, FiestasVistaListaActivity.class);
 				MainActivity.this.startActivity(intent);
 
 			}

@@ -46,7 +46,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
         // always navigate back to the home activity
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             NavUtils.navigateUpTo(this,
-                    new Intent(Intent.ACTION_MAIN).setClass(this, FestasListActivity.class));
+                    new Intent(Intent.ACTION_MAIN).setClass(this, FiestasVistaListaActivity.class));
             return true;
         }
         return false;
