@@ -5,16 +5,17 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_festas_list">FestasListActivity</string>
-
-    
-    
     <string name="search_hint">Búsqueda</string>
-    
+
     <string-array name="showfilter_list">
-        <item>All</item>
-        <item>Favorites</item>
-        <item>Unseen/Upcoming</item>
-        <item>Hidden</item>
-        <item>Lists</item>
+        <item>Todas</item>
+        <item>tradicional</item>
+        <item>feria medieval</item>
+        <item>patronal</item>
+        <item>gastronómica</item>
+        <item>temática</item>
     </string-array>
+
+    <string name="title_activity_fiesta_detail">Detalle de fiesta</string>
+
 </resources>

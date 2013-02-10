@@ -1388,22 +1388,25 @@ containing a value of this type.
         public static final int custom_tab_indicator_unselected=0x7f020075;
         public static final int custom_tab_indicator_unselected_focused=0x7f020076;
         public static final int custom_tab_indicator_unselected_pressed=0x7f020077;
-        public static final int ic_favorited=0x7f020078;
-        public static final int ic_favorited_inverse=0x7f020079;
-        public static final int ic_launcher=0x7f02007a;
-        public static final int show_generic=0x7f02007b;
-        public static final int vpi__tab_indicator=0x7f02007c;
-        public static final int vpi__tab_selected_focused_holo=0x7f02007d;
-        public static final int vpi__tab_selected_holo=0x7f02007e;
-        public static final int vpi__tab_selected_pressed_holo=0x7f02007f;
-        public static final int vpi__tab_unselected_focused_holo=0x7f020080;
-        public static final int vpi__tab_unselected_holo=0x7f020081;
-        public static final int vpi__tab_unselected_pressed_holo=0x7f020082;
+        public static final int divider=0x7f020078;
+        public static final int divider_light=0x7f020079;
+        public static final int ic_favorited=0x7f02007a;
+        public static final int ic_favorited_inverse=0x7f02007b;
+        public static final int ic_launcher=0x7f02007c;
+        public static final int show_generic=0x7f02007d;
+        public static final int stub=0x7f02007e;
+        public static final int vpi__tab_indicator=0x7f02007f;
+        public static final int vpi__tab_selected_focused_holo=0x7f020080;
+        public static final int vpi__tab_selected_holo=0x7f020081;
+        public static final int vpi__tab_selected_pressed_holo=0x7f020082;
+        public static final int vpi__tab_unselected_focused_holo=0x7f020083;
+        public static final int vpi__tab_unselected_holo=0x7f020084;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f020085;
     }
     public static final class id {
-        public static final int TextViewShowListAirtime=0x7f040044;
-        public static final int TextViewShowListNetwork=0x7f040045;
-        public static final int TextViewShowListNextEpisode=0x7f040041;
+        public static final int TextViewShowListAirtime=0x7f04004c;
+        public static final int TextViewShowListNetwork=0x7f04004d;
+        public static final int TextViewShowListNextEpisode=0x7f040049;
         public static final int abs__action_bar=0x7f040027;
         public static final int abs__action_bar_container=0x7f040026;
         public static final int abs__action_bar_subtitle=0x7f040016;
@@ -1445,29 +1448,37 @@ containing a value of this type.
         public static final int abs__titleDivider=0x7f040021;
         public static final int abs__up=0x7f04000b;
         public static final int bottom=0x7f040013;
+        public static final int description=0x7f040041;
         public static final int disableHome=0x7f040009;
         public static final int edit_query=0x7f04002c;
-        public static final int empty=0x7f04003b;
-        public static final int episodetime=0x7f040043;
-        public static final int favoritedLabel=0x7f04003f;
+        public static final int empty=0x7f040043;
+        public static final int episodetime=0x7f04004b;
+        public static final int favoritedLabel=0x7f040047;
         public static final int festasListPager=0x7f040039;
         public static final int festasListPagerIndicator=0x7f040038;
         public static final int homeAsUp=0x7f040006;
-        public static final int labels=0x7f04003e;
+        public static final int imageButton1=0x7f04003e;
+        public static final int imageButton2=0x7f04003f;
+        public static final int imageButton3=0x7f040040;
+        public static final int labels=0x7f040046;
         public static final int listMode=0x7f040002;
-        public static final int menu_search=0x7f040047;
-        public static final int menu_settings=0x7f040046;
+        public static final int mainImage=0x7f04003d;
+        public static final int menu_search=0x7f04004f;
+        public static final int menu_settings=0x7f04004e;
+        public static final int nombreFiesta=0x7f04003a;
         public static final int none=0x7f040010;
         public static final int normal=0x7f040001;
-        public static final int seriesname=0x7f040040;
+        public static final int progressBar1=0x7f04003c;
+        public static final int seriesname=0x7f040048;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
-        public static final int showlist=0x7f04003c;
-        public static final int showposter=0x7f04003d;
-        public static final int shows_fragment=0x7f04003a;
+        public static final int showlist=0x7f040044;
+        public static final int showposter=0x7f040045;
+        public static final int shows_fragment=0x7f040042;
+        public static final int subtitleTextView=0x7f04003b;
         public static final int tabMode=0x7f040003;
-        public static final int timestamp=0x7f040042;
+        public static final int timestamp=0x7f04004a;
         public static final int top=0x7f040014;
         public static final int triangle=0x7f040011;
         public static final int underline=0x7f040012;
@@ -1509,16 +1520,20 @@ containing a value of this type.
         public static final int abs__search_view=0x7f030015;
         public static final int abs__simple_dropdown_hint=0x7f030016;
         public static final int activity_festas_list=0x7f030017;
-        public static final int activity_main=0x7f030018;
-        public static final int fiestas_fragment=0x7f030019;
-        public static final int fiestas_row=0x7f03001a;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001b;
-        public static final int sherlock_spinner_item=0x7f03001c;
+        public static final int activity_fiesta_detail=0x7f030018;
+        public static final int activity_main=0x7f030019;
+        public static final int divider_horizontal=0x7f03001a;
+        public static final int fiesta_details=0x7f03001b;
+        public static final int fiestas_fragment=0x7f03001c;
+        public static final int fiestas_row=0x7f03001d;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001e;
+        public static final int sherlock_spinner_item=0x7f03001f;
     }
     public static final class menu {
         public static final int activity_festas_list=0x7f0c0000;
-        public static final int activity_main=0x7f0c0001;
-        public static final int festas_menu=0x7f0c0002;
+        public static final int activity_fiesta_detail=0x7f0c0001;
+        public static final int activity_main=0x7f0c0002;
+        public static final int festas_menu=0x7f0c0003;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1571,6 +1586,7 @@ containing a value of this type.
         public static final int menu_settings=0x7f090011;
         public static final int search_hint=0x7f090013;
         public static final int title_activity_festas_list=0x7f090012;
+        public static final int title_activity_fiesta_detail=0x7f090014;
     }
     public static final class style {
         /** 

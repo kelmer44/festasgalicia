@@ -19,13 +19,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
-import android.database.Cursor;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,10 +38,10 @@ import com.bretema.fiestasgalicia.R;
 import com.bretema.fiestasgalicia.model.Evento;
 import com.bretema.fiestasgalicia.model.Municipio;
 import com.bretema.fiestasgalicia.model.Subtipo;
-import com.bretema.fiestasgalicia.provider.FiestasContract.Fiestas;
+import com.bretema.fiestasgalicia.util.ImageLoader;
 import com.bretema.fiestasgalicia.util.JSONParser;
 import com.bretema.fiestasgalicia.util.ServiceConstants;
-import com.bretema.fiestasgalicia.view.activities.FiestasVistaListaActivity;
+import com.bretema.fiestasgalicia.view.activities.FiestaDetailActivity;
 
 public class FiestasFragment extends SherlockFragment implements OnItemClickListener {
 
@@ -54,7 +50,7 @@ public class FiestasFragment extends SherlockFragment implements OnItemClickList
 	private FiestaListItemAdapter	mAdapter;
 	private GridView				mGrid;
 
-
+	public ImageLoader				imageLoader;
 	private ViewHolder				viewHolder;
 
 	private JSONParser				jParser	= new JSONParser();
@@ -67,8 +63,8 @@ public class FiestasFragment extends SherlockFragment implements OnItemClickList
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v =  inflater.inflate(R.layout.fiestas_fragment, container, false);
-
+		View v = inflater.inflate(R.layout.fiestas_fragment, container, false);
+		imageLoader=new ImageLoader(getActivity());
 		new LoadFiestas().execute();
 		return v;
 	}
@@ -103,6 +99,11 @@ public class FiestasFragment extends SherlockFragment implements OnItemClickList
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+		Evento e = (Evento) listaEventos.get(position);
+
+		Intent in = new Intent(getActivity(), FiestaDetailActivity.class);
+		in.putExtra("id", e.getId());
+		startActivity(in);
 	}
 
 	private class FiestaListItemAdapter extends BaseAdapter {
@@ -153,18 +154,17 @@ public class FiestasFragment extends SherlockFragment implements OnItemClickList
 			// mCursor.getLong(ShowsQuery.AIRSTIME),
 			// mCursor.getString(ShowsQuery.AIRSDAYOFWEEK), mContext);
 			// viewHolder.airsTime.setText(values[1] + " " + values[0]);
-			
-			java.text.SimpleDateFormat sdf=new java.text.SimpleDateFormat("dd/MM/yyyy");
-			
-			
+
+			java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
+
 			viewHolder.airsTime.setText("Del " + sdf.format(e.getFechaInicio()));
 
 			viewHolder.network.setText("Al " + sdf.format(e.getFechaFin()));
 			// set poster
-			final String imagePath = e.getImagenPrincipal();
+			final String imagePath = e.getImagenLista();
 			// ImageProvider.getInstance(mContext).loadPosterThumb(viewHolder.poster,
 			// imagePath);
-
+			imageLoader.DisplayImage(imagePath, viewHolder.poster);
 			return convertView;
 		}
 
@@ -175,8 +175,7 @@ public class FiestasFragment extends SherlockFragment implements OnItemClickList
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
-			return null;
+			return listaEventos.get(position);
 		}
 
 		@Override
@@ -209,16 +208,16 @@ public class FiestasFragment extends SherlockFragment implements OnItemClickList
 	 * */
 	class LoadFiestas extends AsyncTask<Void, Void, Boolean> {
 
-		private String	TAG	= LoadFiestas.class.getSimpleName();
+		private String			TAG	= LoadFiestas.class.getSimpleName();
 
-		public ProgressDialog			pDialog;
+		public ProgressDialog	pDialog;
+
 		/**
 		 * Before starting background thread Show Progress Dialog
 		 * */
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			
 
 			pDialog = new ProgressDialog(getActivity());
 			pDialog.setMessage("Cargando datos... por favor, espere.");
@@ -251,7 +250,7 @@ public class FiestasFragment extends SherlockFragment implements OnItemClickList
 				boolean success = json.getBoolean(ServiceConstants.TAG_SUCCESS);
 				String message = json.getString(ServiceConstants.TAG_MESSAGE);
 
-				Log.d("Server message: ", json.toString());
+				Log.d("Server message: ", message);
 
 				// Getting data
 				JSONObject dataObject = json.getJSONObject(ServiceConstants.TAG_DATA);
@@ -319,11 +318,11 @@ public class FiestasFragment extends SherlockFragment implements OnItemClickList
 						m.setLongitud(longitud);
 
 						Subtipo s = new Subtipo();
-						
+
 						JSONObject subtipoJson = c.getJSONObject(ServiceConstants.TAG_EVENTO_SUBTIPO_EVENTO);
-						
+
 						int idSubtipo = subtipoJson.getInt(ServiceConstants.TAG_SUBTIPO_ID_SUBTIPO);
-						
+
 						String nombreSubtipo = "";
 
 						try {
@@ -332,9 +331,9 @@ public class FiestasFragment extends SherlockFragment implements OnItemClickList
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						
+
 						s.setDescripcion(nombreSubtipo);
-						
+
 						evento.setSubtipo(s);
 						evento.setMunicipio(m);
 						evento.setLatitud(latitud);

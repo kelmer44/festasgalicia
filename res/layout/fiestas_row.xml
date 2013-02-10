@@ -7,11 +7,11 @@
     <ImageView
         android:id="@+id/showposter"
         android:layout_width="68dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="@dimen/default_padding"
         android:contentDescription="Descripción"
-        android:scaleType="centerInside"
+        android:scaleType="fitXY"
         android:src="@drawable/show_generic" />
 
     <LinearLayout
