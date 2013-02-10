@@ -33,7 +33,7 @@ public class FiestasContract {
 		String TIPO = "iDTIPOEVENTO";
 	}
 
-	interface Municipio {
+	interface MunicipioColumns {
 		String MUNICIPIO_ID = "ID_MUNICIPIO";
 		String ID_PROVINCIA = "ID_PROVINCIA";
 		String NOMBRE = "NOMBRE";
@@ -42,7 +42,7 @@ public class FiestasContract {
 		String PROVINCIA = "iDPROVINCIA";
 	}
 	
-	interface Subtipo {
+	interface SubtipoColumns {
 		String SUBTIPO_ID = "ID_SUBTIPO_EVENTO";
 		String DESCRIPCION = "DESCRIPCION";
 	}
@@ -52,7 +52,7 @@ public class FiestasContract {
 	
 	public static final String PATH_FIESTAS = "Evento";
 	public static final String PATH_SUBTIPOS = "SubtipoEvento";
-	public static final String PATH_MUNICIPIO = "Municipio";
+	public static final String PATH_MUNICIPIOS = "Municipio";
 	
 	
 	public static class Fiestas implements FiestasColumns, BaseColumns {
@@ -62,10 +62,10 @@ public class FiestasContract {
         public static final Uri CONTENT_FILTER_URI = Uri.withAppendedPath(CONTENT_URI, "filter");
 
         /** Use if multiple items get returned */
-        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.seriesguide.show";
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.fiestas.fiesta";
 
         /** Use if a single item is returned */
-        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.seriesguide.show";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.fiestas.fiesta";
 
         /** Default "ORDER BY" clause. */
         public static final String DEFAULT_SORT = FiestasColumns.NOMBRE + " ASC";
@@ -82,25 +82,46 @@ public class FiestasContract {
 	}
 	
 	
-	public static class Subtipos implements FiestasColumns, BaseColumns {
+	public static class Subtipos implements SubtipoColumns, BaseColumns {
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_SUBTIPOS)
                 .build();
 
         /** Use if multiple items get returned */
-        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.seriesguide.season";
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.fiestas.subtipo";
 
         /** Use if a single item is returned */
-        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.seriesguide.season";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.fiestas.subtipo";
 
-        public static Uri buildSeasonUri(String seasonId) {
-            return CONTENT_URI.buildUpon().appendPath(seasonId).build();
+        public static Uri buildSubtipoUri(String subtipoId) {
+            return CONTENT_URI.buildUpon().appendPath(subtipoId).build();
         }
 
         public static String getSubtipoId(Uri uri) {
             return uri.getLastPathSegment();
         }
-		
-		
+	}
+	
+	
+	public static class Municipios implements MunicipioColumns, BaseColumns {
+        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_MUNICIPIOS)
+                .build();
+
+        /** Use if multiple items get returned */
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.fiestas.municipio";
+
+        /** Use if a single item is returned */
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.fiestas.municipio";
+
+        public static Uri buildMunicipioUri(String municipioId) {
+            return CONTENT_URI.buildUpon().appendPath(municipioId).build();
+        }
+
+        public static String getMunicipioUri(Uri uri) {
+            return uri.getLastPathSegment();
+        }
+	}
+	
+	private FiestasContract(){
 		
 	}
 }

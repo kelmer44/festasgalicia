@@ -19,6 +19,8 @@ public class Evento {
     
     private Municipio municipio;
     
+    private Subtipo subtipo;
+    
     private double latitud;
     
     private double longitud;
@@ -146,6 +148,14 @@ public class Evento {
 
 	public Evento() {
 		super();
+	}
+
+	public Subtipo getSubtipo() {
+		return subtipo;
+	}
+
+	public void setSubtipo(Subtipo subtipo) {
+		this.subtipo = subtipo;
 	}
 
 	

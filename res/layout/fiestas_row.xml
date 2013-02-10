@@ -14,11 +14,29 @@
         android:scaleType="centerInside"
         android:src="@drawable/show_generic" />
 
+    <LinearLayout
+        android:id="@+id/labels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/inline_padding"
+        android:visibility="visible" >
+
+        <ImageView
+            android:id="@+id/favoritedLabel"
+            android:layout_width="15dp"
+            android:layout_height="20dp"
+            android:contentDescription="Añadido a favoritos"
+            android:src="@drawable/ic_favorited"
+            android:visibility="visible" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/seriesname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/timestamp"
+        android:layout_toLeftOf="@+id/labels"
         android:layout_toRightOf="@id/showposter"
         android:ellipsize="end"
         android:maxLines="2"
@@ -26,7 +44,7 @@
         android:paddingRight="@dimen/inline_padding"
         android:paddingTop="2dp"
         android:text="@string/app_name"
-        android:textAppearance="?attr/textAppearanceSgMediumLight" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/TextViewShowListNextEpisode"
@@ -55,25 +73,9 @@
         android:id="@+id/timestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignRight="@+id/labels"
+        android:layout_below="@+id/seriesname"
         android:orientation="vertical" >
-
-        <LinearLayout
-            android:id="@+id/labels"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/inline_padding" >
-
-            <ImageView
-                android:id="@+id/favoritedLabel"
-                android:layout_width="15dp"
-                android:layout_height="20dp"
-                android:contentDescription="Añadido a favoritos"
-                android:src="?attr/drawableStar"
-                android:visibility="gone" />
-        </LinearLayout>
 
         <TextView
             android:id="@+id/TextViewShowListAirtime"
@@ -93,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:gravity="right"
-            android:maxWidth="90dp"
+            android:maxWidth="150dp"
             android:paddingBottom="@dimen/inline_padding"
             android:text="@string/app_name" />
     </LinearLayout>
