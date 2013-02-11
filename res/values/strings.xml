@@ -17,5 +17,7 @@
     </string-array>
 
     <string name="title_activity_fiesta_detail">Detalle de fiesta</string>
+    
+    <string name="title_activity_map">Vista de mapa</string>
 
 </resources>

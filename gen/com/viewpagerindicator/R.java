@@ -8,11 +8,11 @@ package com.viewpagerindicator;
 
 public final class R {
 	public static final class id {
-		public static final int bottom = 0x7f040013;
-		public static final int none = 0x7f040010;
-		public static final int triangle = 0x7f040011;
-		public static final int underline = 0x7f040012;
-		public static final int top = 0x7f040014;
+		public static final int bottom = 0x7f040015;
+		public static final int none = 0x7f040012;
+		public static final int triangle = 0x7f040013;
+		public static final int underline = 0x7f040014;
+		public static final int top = 0x7f040016;
 	}
 	public static final class style {
 		public static final int Widget_TabPageIndicator = 0x7f0a005a;
@@ -99,13 +99,13 @@ public final class R {
 		public static final int LinePageIndicator_centered = 1;
 	}
 	public static final class drawable {
-		public static final int vpi__tab_selected_pressed_holo = 0x7f020082;
-		public static final int vpi__tab_selected_focused_holo = 0x7f020080;
-		public static final int vpi__tab_selected_holo = 0x7f020081;
-		public static final int vpi__tab_unselected_focused_holo = 0x7f020083;
-		public static final int vpi__tab_unselected_holo = 0x7f020084;
-		public static final int vpi__tab_indicator = 0x7f02007f;
-		public static final int vpi__tab_unselected_pressed_holo = 0x7f020085;
+		public static final int vpi__tab_selected_pressed_holo = 0x7f02008b;
+		public static final int vpi__tab_selected_focused_holo = 0x7f020089;
+		public static final int vpi__tab_selected_holo = 0x7f02008a;
+		public static final int vpi__tab_unselected_focused_holo = 0x7f02008c;
+		public static final int vpi__tab_unselected_holo = 0x7f02008d;
+		public static final int vpi__tab_indicator = 0x7f020088;
+		public static final int vpi__tab_unselected_pressed_holo = 0x7f02008e;
 	}
 	public static final class attr {
 		public static final int footerIndicatorStyle = 0x7f010075;

@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -100,7 +101,13 @@ public class FiestasVistaListaActivity extends BaseActivity implements CompatAct
 		if (itemId == R.id.menu_search) {
 			onSearchRequested();
 			return true;
-		} else {
+		} 
+		else if (itemId == R.id.menu_map){
+			Intent in = new Intent(this, FiestasMapActivity.class);
+			startActivity(in);
+			return true;
+		}		
+		else {
 			return super.onOptionsItemSelected(item);
 		}
 	}
@@ -239,16 +246,17 @@ public class FiestasVistaListaActivity extends BaseActivity implements CompatAct
 					}
 				});
 			} else {
-				AlertDialog.Builder builder = new AlertDialog.Builder(FiestasVistaListaActivity.this);
+				/*AlertDialog.Builder builder = new AlertDialog.Builder(FiestasVistaListaActivity.this);
 				builder.setMessage("No se pudieron obtener los datos");
 				builder.setCancelable(false);
 				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
-						FiestasVistaListaActivity.this.finish();
+						//FiestasVistaListaActivity.this.finish();
+						
 					}
 				});
 				AlertDialog alert = builder.create();
-				alert.show();
+				alert.show();*/
 			}
 
 		}

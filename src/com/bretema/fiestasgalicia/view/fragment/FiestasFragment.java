@@ -395,7 +395,7 @@ public class FiestasFragment extends SherlockFragment implements OnItemClickList
 				builder.setCancelable(false);
 				builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
-						getActivity().finish();
+						//getActivity().finish();
 					}
 				});
 				AlertDialog alert = builder.create();
